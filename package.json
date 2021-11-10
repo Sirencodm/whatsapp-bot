@@ -1,11 +1,13 @@
 {
   "name": "whatsapp-bot",
-  "version": "2.0.0",
-  "description": "A simple and easy-to-use WhatsApp bot project, written in JavaScript",
-  "main": "index.js",
+  "version": "3.0.0-dev",
+  "description": "A simple and easy-to-use WhatsApp bot project, written in TypeScript",
+  "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint . --ignore-path .gitignore",
-    "lint:fix": "eslint . --ignore-path .gitignore",
+    "build": "npm run lint && npm run compile",
+    "compile": "tsc --build tsconfig.json",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
     "start": "node ."
   },
   "repository": {
@@ -19,17 +21,19 @@
   },
   "homepage": "https://github.com/zhycorp/whatsapp-bot#readme",
   "eslintConfig": {
-    "extends": "@zhycorp/eslint-config/node"
-  },
-  "dependencies": {
-    "@open-wa/wa-automate": "^4.23.7",
-    "@open-wa/wa-decrypt": "^4.3.1",
-    "child_process": "^1.0.2",
-    "fs": "^0.0.1-security",
-    "mathjs": "^10.0.0"
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": "@zhycorp/eslint-config/typescript"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "@zhycorp/eslint-config": "^6.0.2",
-    "eslint": "^8.2.0"
+    "eslint": "^8.2.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@open-wa/wa-automate": "^4.23.7"
   }
 }
